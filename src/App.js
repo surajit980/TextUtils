@@ -1,24 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+import Navbar from './components/Navbar';
+import Textinputs from './components/Textinputs';
+import React, { useState } from 'react';
 
 function App() {
+  const [mode, setmode] = useState(false)
+
+  const handdleMode = () => {
+    if (mode) {
+      setmode(false)
+      document.body.style.backgroundColor = "white"
+    }
+    else {
+      setmode(true)
+      document.body.style.backgroundColor = "#000000"
+    }
+  }
+  const styleText = mode ? "dark" : "light"
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar style={styleText} darkmode={handdleMode} />
+      <Textinputs style={styleText} />
+    </>
   );
 }
 
